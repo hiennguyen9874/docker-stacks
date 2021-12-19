@@ -48,6 +48,8 @@ RUN echo "${LD_LIBRARY_PATH}"
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib"
 
+RUN echo "${LD_LIBRARY_PATH}"
+
 RUN pip3 install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/python/tensorrt-${TRT_VERSION}-${PYTHON_VERSION}-none-linux_${ARCH}.whl && \
     pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/uff/*.whl && \
