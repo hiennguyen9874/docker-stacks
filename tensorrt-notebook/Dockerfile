@@ -47,9 +47,9 @@ USER ${NB_UID}
 
 # Install Python 3 packages
 RUN mamba install --quiet --yes \
-    'onnx=1.9.0' \
-    'onnxruntime=1.8.1' \
-    'Pillow>=8.3.2' \
+    'onnx=1.9' \
+    'onnxruntime=1.8' \
+    'Pillow>=8.3' \
     'pycuda<2021.1' && \
     mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
