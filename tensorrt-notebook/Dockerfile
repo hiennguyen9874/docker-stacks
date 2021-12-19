@@ -82,6 +82,8 @@ ENV TRT_OSSPATH /workspace/TensorRT
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${TRT_OSSPATH}/build/out:${TRT_LIBPATH}"
 WORKDIR /workspace
 
+RUN fix-permissions "/home/${NB_USER}"
+
 USER ${NB_UID}
 
 RUN ["/bin/bash"]
