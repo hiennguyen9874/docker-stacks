@@ -44,11 +44,7 @@ COPY TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz .
 
 RUN tar xzvf TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz && rm TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz
 
-RUN echo "${LD_LIBRARY_PATH}"
-
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib:/workspace/TensorRT-${TRT_VERSION}/targets/${ARCH}-linux-gnu/lib"
-
-RUN echo "${LD_LIBRARY_PATH}"
 
 RUN pip3 install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/python/tensorrt-${TRT_VERSION}-${PYTHON_VERSION}-none-linux_${ARCH}.whl && \
