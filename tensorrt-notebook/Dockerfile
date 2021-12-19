@@ -46,7 +46,7 @@ RUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" &&\
 USER ${NB_UID}
 
 # Install Python 3 packages
-RUN mamba install --quiet --yes \
+RUN mamba install --quiet --yes -c anaconda -c conda-forge \
     'onnx=1.9' \
     'onnxruntime=1.8' \
     'Pillow>=8.3' \
