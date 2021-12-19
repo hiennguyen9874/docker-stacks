@@ -1,0 +1,1 @@
+- GPU: `bash ./build_push.sh 11.3 hiennguyen9874 ubuntu20.04-py3.8-cuda11.3-v0.1 ubuntu20.04-py3.8-cuda11.3-tensorrt8.2-v0.1`

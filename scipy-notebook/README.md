@@ -1,2 +1,2 @@
 - CPU: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cpu-v0.1`
-- CPU: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-cuda11.3-v0.1`
+- CPU: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cuda11.3-v0.1`
