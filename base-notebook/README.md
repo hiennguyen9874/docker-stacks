@@ -1,0 +1,2 @@
+- CPU: `bash ./build_push.sh ubuntu:focal 3.8 hiennguyen9874 ubuntu20.04-cpu-v0.1`
+- CUDA11.3: `bash ./build_push.sh nvidia/cuda:11.3.1-cudnn8-devel-ubuntu20.04 3.8 hiennguyen9874 ubuntu20.04-cuda11.3-v0.1`
