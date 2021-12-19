@@ -64,7 +64,8 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
     'numpy' \
     'pytest' \
     'nvidia-tensorrt==8.0.3.4' \
-    'nvidia-pyindex'
+    'nvidia-pyindex' \
+    --extra-index-url https://pypi.ngc.nvidia.com
 
 RUN pip3 install --no-cache-dir 'torch==1.10.1+cu113' \
     'torchvision==0.11.2+cu113' \
