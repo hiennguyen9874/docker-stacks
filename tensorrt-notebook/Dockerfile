@@ -49,5 +49,26 @@ ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib"
 RUN pip3 install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/python/tensorrt-${TRT_VERSION}-${PYTHON_VERSION}-none-linux_${ARCH}.whl && \
     pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/uff/*.whl && \
-    pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/graphsurgeon/*.whl && \
+    pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/graphsurgeon/*.whl
 
+RUN fix-permissions "/home/${NB_USER}" && fix-permissions "/workspace"
+
+WORKDIR /workspace
+
+RUN pip3 install --no-cache-dir torch-tensorrt -f https://github.com/NVIDIA/Torch-TensorRT/releases
+
+RUN pip3 install --no-cache-dir 'torch==1.10.1+cu113' \
+    'torchvision==0.11.2+cu113' \
+    'torchaudio==0.10.1+cu113' \
+    -f https://download.pytorch.org/whl/cu113/torch_stable.html
+
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir setuptools>=41.0.0 && \
+    pip3 install --no-cache-dir 'onnx==1.8.1' \
+    'onnxruntime==1.8.0'  \
+    'Pillow==8.3.2' \
+    'pycuda<2020.1' \
+    'numpy' \
+    'pytest'
+
+USER ${NB_UID}
