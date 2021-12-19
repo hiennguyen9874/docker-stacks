@@ -46,7 +46,7 @@ RUN tar xzvf TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz &
 
 RUN echo "${LD_LIBRARY_PATH}"
 
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib:/workspace/TensorRT-${TRT_VERSION}/targets/${ARCH}-linux-gnu/lib"
 
 RUN echo "${LD_LIBRARY_PATH}"
 
