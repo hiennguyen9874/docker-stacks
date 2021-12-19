@@ -42,9 +42,9 @@ WORKDIR /tmp
 
 COPY TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz .
 
-RUN tar xzvf -C /workspace TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz
-
 WORKDIR /workspace
+
+RUN tar xzvf -C /workspace /tmp/TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib"
 
