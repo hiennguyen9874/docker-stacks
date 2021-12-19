@@ -85,5 +85,3 @@ WORKDIR /workspace
 RUN fix-permissions "/home/${NB_USER}"
 
 USER ${NB_UID}
-
-RUN ["/bin/bash"]
