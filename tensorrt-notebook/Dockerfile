@@ -31,8 +31,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 USER ${NB_UID}
 
 # Install TensorRT
-ARG CUDA_VERSION=11.3
-ENV TRT_VERSION=8.2.0.6
+ARG CUDA_VERSION=11.3.1
+ENV TRT_VERSION=8.0.3.4
 
 USER root
 
