@@ -62,7 +62,16 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
     'Pillow==8.3.2' \
     'pycuda<2020.1' \
     'numpy' \
-    'pytest'
+    'pytest' \
+    'nvidia-tensorrt==8.0.3.4' \
+    'nvidia-pyindex'
+
+RUN pip3 install --no-cache-dir 'torch==1.10.1+cu113' \
+    'torchvision==0.11.2+cu113' \
+    'torchaudio==0.10.1+cu113' \
+    -f https://download.pytorch.org/whl/cu113/torch_stable.html
+
+RUN pip3 install --no-cache-dir torch-tensorrt -f https://github.com/NVIDIA/Torch-TensorRT/releases
 
 USER root
 
