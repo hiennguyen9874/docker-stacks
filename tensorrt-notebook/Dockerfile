@@ -31,9 +31,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 USER ${NB_UID}
 
 # Install TensorRT
-ARG CUDA_VERSION=11.3.1
-ARG CUDNN="cudnn8.2"
-ARG PYTHON_VERSION=cp38
+ENV CUDA_VERSION=11.3.1
+ENV CUDNN="cudnn8.2"
+ENV PYTHON_VERSION=cp38
 ENV TRT_VERSION=8.0.3.4
 ENV ARCH=x86_64
 ENV CUDA="cuda-${CUDA_VERSION%.*}"
