@@ -38,13 +38,11 @@ ENV TRT_VERSION=8.0.3.4
 ENV ARCH=x86_64
 ENV CUDA="cuda-11.3"
 
-WORKDIR /tmp
+WORKDIR /workspace
 
 COPY TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz .
 
-WORKDIR /workspace
-
-RUN tar xzvf -C /workspace /tmp/TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz
+RUN tar xzvf TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz && rm TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib"
 
