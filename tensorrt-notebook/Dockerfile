@@ -57,7 +57,7 @@ USER ${NB_UID}
 
 RUN pip3 install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir setuptools>=41.0.0 && \
-    pip3 install --no-cache-dir 'onnx=1.8.1' \
+    pip3 install --no-cache-dir 'onnx==1.8.1' \
     'onnxruntime==1.8.0'  \
     'Pillow==8.3.2' \
     'pycuda<2020.1' \
