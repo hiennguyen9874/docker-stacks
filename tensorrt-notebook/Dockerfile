@@ -55,8 +55,6 @@ RUN fix-permissions "/home/${NB_USER}" && fix-permissions "/workspace"
 
 WORKDIR /workspace
 
-RUN pip3 install --no-cache-dir torch-tensorrt -f https://github.com/NVIDIA/Torch-TensorRT/releases
-
 RUN pip3 install --no-cache-dir 'torch==1.10.1+cu113' \
     'torchvision==0.11.2+cu113' \
     'torchaudio==0.10.1+cu113' \
@@ -70,5 +68,7 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
     'pycuda<2020.1' \
     'numpy' \
     'pytest'
+
+RUN pip3 install --no-cache-dir torch-tensorrt -f https://github.com/NVIDIA/Torch-TensorRT/releases
 
 USER ${NB_UID}
