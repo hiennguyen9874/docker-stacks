@@ -46,6 +46,9 @@ RUN tar xzvf TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz &
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib:/workspace/TensorRT-${TRT_VERSION}/targets/${ARCH}-linux-gnu/lib"
 
+# Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
+RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
+
 RUN pip3 install --no-cache-dir --upgrade pip && \
     pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/python/tensorrt-${TRT_VERSION}-${PYTHON_VERSION}-none-linux_${ARCH}.whl && \
     pip3 install --no-cache-dir /workspace/TensorRT-${TRT_VERSION}/uff/*.whl && \
@@ -69,6 +72,10 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
     'numpy' \
     'pytest'
 
+
 RUN pip3 install --no-cache-dir torch-tensorrt -f https://github.com/NVIDIA/Torch-TensorRT/releases
 
 USER ${NB_UID}
+
+
+
