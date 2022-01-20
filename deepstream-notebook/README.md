@@ -1,0 +1,2 @@
+- Download file `deepstream-6.0_6.0.0-1_amd64.deb` from [developer.nvidia.com/deepstream-sdk](https://developer.nvidia.com/deepstream-sdk)
+- GPU: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cuda11.3-tensorrt8.0-v0.1 ubuntu20.04-py3.8-cuda11.3-tensorrt8.0-deepstream6.0-v0.1`
