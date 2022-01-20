@@ -1,13 +1,14 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 ARG OWNER=jupyter
-ARG BASE_CONTAINER=$OWNER/tensorrt-notebook
+ARG BASE_CONTAINER=$OWNER/tensorrt2-notebook
 FROM $BASE_CONTAINER
 
 USER root
 
-# Install dependencies
-RUN apt-get update && \
+# Install dependenciesRUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" &&\
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub &&\
+      apt-get update && \
       DEBIAN_FRONTEND=noninteractive      apt-get install -y --no-install-recommends \
       linux-libc-dev \
       libglew2.0 libssl1.0.0 libjpeg8 libjson-glib-1.0-0 \
