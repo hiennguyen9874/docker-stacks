@@ -1,0 +1,2 @@
+- Download file `TensorRT-8.0.3.4.Linux.x86_64-gnu.cuda-11.3.cudnn8.2.tar.gz` from [developer.nvidia.com/tensorrt](https://developer.nvidia.com/tensorrt)
+- GPU: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cuda11.3-v0.1 ubuntu20.04-py3.8-cuda11.3-tensorrt8.0-v0.1`
