@@ -7,7 +7,8 @@ FROM $BASE_CONTAINER
 USER root
 
 # Install Dependencies
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+RUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" && \
+      DEBIAN_FRONTEND=noninteractive apt-get update && \
       apt-get install -y --no-install-recommends \
       gstreamer1.0-plugins-good \
       gstreamer1.0-plugins-bad \
@@ -26,7 +27,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
       libjansson-dev  \
       librabbitmq4 \
       librabbitmq-dev \
-      libuuid1
+      libuuid1 \
+      libnvinfer8=${v} \
+      libnvinfer-dev=${v} \
+      libnvparsers8=${v} \
+      libnvparsers-dev=${v} \
+      libnvonnxparsers8=${v} \
+      libnvonnxparsers-dev=${v} \
+      libnvinfer-plugin8=${v} \
+      libnvinfer-plugin-dev=${v} 
 
 WORKDIR /workspace
 
