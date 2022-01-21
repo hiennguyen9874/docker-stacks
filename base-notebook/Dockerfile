@@ -151,7 +151,7 @@ RUN mamba install --quiet --yes \
 EXPOSE 8888
 
 # Configure container startup
-ENTRYPOINT ["tini", "-g", "--"]
+ENTRYPOINT ["/tini", "-g", "--"]
 CMD ["start-notebook.sh"]
 
 # Copy local files as late as possible to avoid cache busting

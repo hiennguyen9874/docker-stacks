@@ -28,6 +28,7 @@ RUN v="${TRT_VERSION%.*}-1+cuda${CUDA:5:8}" && \
       librabbitmq4 \
       librabbitmq-dev \
       libuuid1 \
+      libjson-glib-1.0 \
       libnvinfer8=${v} \
       libnvinfer-dev=${v} \
       libnvparsers8=${v} \
@@ -55,5 +56,8 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1 /usr/lib/x86_64-linux-
 WORKDIR /workspace
 
 RUN fix-permissions "/home/${NB_USER}"
+
+# Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
+RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
 
 USER ${NB_UID}
