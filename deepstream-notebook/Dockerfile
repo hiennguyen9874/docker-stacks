@@ -7,7 +7,7 @@ FROM $BASE_CONTAINER
 USER root
 
 # Install Dependencies
-RUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" && \
+RUN v="${TRT_VERSION%.*}-1+cuda${CUDA:5:8}" && \
       DEBIAN_FRONTEND=noninteractive apt-get update && \
       apt-get install -y --no-install-recommends \
       gstreamer1.0-plugins-good \
