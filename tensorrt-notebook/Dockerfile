@@ -78,4 +78,11 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
 
 RUN pip3 install --no-cache-dir torch-tensorrt -f https://github.com/NVIDIA/Torch-TensorRT/releases
 
+ENV CUDA_VERSION=${CUDA_VERSION}
+ENV TRT_VERSION=${TRT_VERSION}
+ENV CUDA=${CUDA}
+ENV CUDNN=${CUDNN}
+ENV ARCH=${ARCH}
+ENV PYTHON_VERSION=${PYTHON_VERSION}
+
 USER ${NB_UID}
