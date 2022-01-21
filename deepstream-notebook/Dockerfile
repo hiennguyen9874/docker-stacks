@@ -7,7 +7,7 @@ FROM $BASE_CONTAINER
 USER root
 
 # Install dependenciesRUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" &&\
-RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/7fa2af80.pub &&\
+RUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" &&\
       apt-get update && \
       DEBIAN_FRONTEND=noninteractive      apt-get install -y --no-install-recommends \
       linux-libc-dev \
@@ -35,18 +35,18 @@ RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/
       libboost-dev \
       librabbitmq-dev \
       libgles2-mesa-dev libgtk-3-dev libgdk3.0-cil-dev \
-      libnvinfer8=${TRT_VERSION} \
-      libnvinfer-dev=${TRT_VERSION} \
-      libnvparsers8=${TRT_VERSION} \
-      libnvparsers-dev=${TRT_VERSION} \
-      libnvonnxparsers8=${TRT_VERSION} \
-      libnvonnxparsers-dev=${TRT_VERSION} \
-      libnvinfer-plugin8=${TRT_VERSION} \
-      libnvinfer-plugin-dev=${TRT_VERSION} \
-      python-libnvinfer=${TRT_VERSION} \
-      python3-libnvinfer=${TRT_VERSION} \
-      python-libnvinfer-dev=${TRT_VERSION} \
-      python3-libnvinfer-dev=${TRT_VERSION} && \
+      libnvinfer8=${v} \
+      libnvinfer-dev=${v} \
+      libnvparsers8=${v} \
+      libnvparsers-dev=${v} \
+      libnvonnxparsers8=${v} \
+      libnvonnxparsers-dev=${v} \
+      libnvinfer-plugin8=${v} \
+      libnvinfer-plugin-dev=${v} \
+      python-libnvinfer=${v} \
+      python3-libnvinfer=${v} \
+      python-libnvinfer-dev=${v} \
+      python3-libnvinfer-dev=${v} && \
       rm -rf /var/lib/apt/lists/* && \
       apt autoremove
 
