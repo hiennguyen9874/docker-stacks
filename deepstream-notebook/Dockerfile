@@ -1,7 +1,7 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 ARG OWNER=jupyter
-ARG BASE_CONTAINER=$OWNER/tensorrt2-notebook
+ARG BASE_CONTAINER=$OWNER/tensorrt-notebook
 FROM $BASE_CONTAINER
 
 USER root
