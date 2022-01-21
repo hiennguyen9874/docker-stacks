@@ -1,12 +1,10 @@
 # Copyright (c) Jupyter Development Team.
-USER root
-
-
 # Distributed under the terms of the Modified BSD License.
 ARG OWNER=jupyter
 ARG BASE_CONTAINER=$OWNER/datascience-notebook
 FROM $BASE_CONTAINER
 
+USER root
 
 # Install requried libraries
 RUN apt-get update && apt-get install -y software-properties-common
