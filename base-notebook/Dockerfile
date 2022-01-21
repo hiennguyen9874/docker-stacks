@@ -24,11 +24,15 @@ USER root
 #   https://github.com/krallin/tini#why-tini for details.
 # - apt-get upgrade is run to patch known vulnerabilities in apt-get packages as
 #   the ubuntu base image is rebuilt too seldom sometimes (less than once a month)
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --yes && \
     apt-get upgrade --yes && \
     apt-get install --yes --no-install-recommends \
-    tini \
+    # tini \
     wget \
     ca-certificates \
     sudo \
