@@ -31,12 +31,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 USER ${NB_UID}
 
 # Install TensorRT
-ENV CUDA_VERSION=11.3.1
-ENV CUDNN="cudnn8.2"
-ENV PYTHON_VERSION=cp38
-ENV TRT_VERSION=8.0.3.4
-ENV ARCH=x86_64
-ENV CUDA="cuda-11.3"
+ARG CUDA_VERSION=11.3.1
+ARG TRT_VERSION=8.0.3.4
+ARG CUDA="cuda-11.3"
+ARG CUDNN="cudnn8.2"
+ARG ARCH=x86_64
+ARG PYTHON_VERSION=cp38
 
 WORKDIR /workspace
 
@@ -79,6 +79,3 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
 RUN pip3 install --no-cache-dir torch-tensorrt -f https://github.com/NVIDIA/Torch-TensorRT/releases
 
 USER ${NB_UID}
-
-
-

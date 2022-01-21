@@ -38,7 +38,7 @@ RUN set -x && \
     julia_arch=$(uname -m) && \
     julia_short_arch="${julia_arch}" && \
     if [ "${julia_short_arch}" == "x86_64" ]; then \
-      julia_short_arch="x64"; \
+    julia_short_arch="x64"; \
     fi; \
     julia_installer="julia-${JULIA_VERSION}-linux-${julia_arch}.tar.gz" && \
     julia_major_minor=$(echo "${JULIA_VERSION}" | cut -d. -f 1,2) && \
@@ -87,13 +87,13 @@ RUN mamba install --quiet --yes \
 RUN set -x && \
     arch=$(uname -m) && \
     if [ "${arch}" == "x86_64" ]; then \
-        mamba install --quiet --yes \
-            'r-rmarkdown' \
-            'r-tidymodels' \
-            'r-tidyverse' && \
-            mamba clean --all -f -y && \
-            fix-permissions "${CONDA_DIR}" && \
-            fix-permissions "/home/${NB_USER}"; \
+    mamba install --quiet --yes \
+    'r-rmarkdown' \
+    'r-tidymodels' \
+    'r-tidyverse' && \
+    mamba clean --all -f -y && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"; \
     fi;
 
 # Add Julia packages.
