@@ -11,10 +11,11 @@ RUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" &&\
       apt-get update && \
       DEBIAN_FRONTEND=noninteractive      apt-get install -y --no-install-recommends \
       linux-libc-dev \
-      libglew2.0 libssl1.0.0 libjpeg8 libjson-glib-1.0-0 \
+      # libglew2.0 libssl1.0.0 libjpeg8 libjson-glib-1.0-0 \
+      libjpeg8 libjson-glib-1.0-0 \
       gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-tools gstreamer1.0-libav \
       gstreamer1.0-alsa \
-      libcurl3 \
+      # libcurl3 \
       libuuid1 \
       libjansson4 \
       libjansson-dev \
@@ -43,9 +44,9 @@ RUN v="${TRT_VERSION%.*}-1+cuda${CUDA_VERSION%.*}" &&\
       libnvonnxparsers-dev=${v} \
       libnvinfer-plugin8=${v} \
       libnvinfer-plugin-dev=${v} \
-      python-libnvinfer=${v} \
+      # python-libnvinfer=${v} \
       python3-libnvinfer=${v} \
-      python-libnvinfer-dev=${v} \
+      # python-libnvinfer-dev=${v} \
       python3-libnvinfer-dev=${v} && \
       rm -rf /var/lib/apt/lists/* && \
       apt autoremove
