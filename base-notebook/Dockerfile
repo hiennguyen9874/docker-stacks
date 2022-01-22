@@ -90,7 +90,12 @@ WORKDIR /tmp
 # CONDA_MIRROR is a mirror prefix to speed up downloading
 # For example, people from mainland China could set it as
 # https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/LatestRelease
-ARG CONDA_MIRROR=https://github.com/conda-forge/miniforge/releases/latest/download
+ARG conda_version="4.11.0"
+ARG miniforge_patch_number="0"
+ARG miniforge_version="${conda_version}-${miniforge_patch_number}"
+ARG miniforge_python="Mambaforge"
+# Mambaforge or Mambaforge-pypy3
+ARG CONDA_MIRROR=https://github.com/conda-forge/miniforge/releases/download/${miniforge_version}/
 
 # ---- Miniforge installer ----
 # Check https://github.com/conda-forge/miniforge/releases
@@ -102,7 +107,7 @@ ARG CONDA_MIRROR=https://github.com/conda-forge/miniforge/releases/latest/downlo
 RUN set -x && \
     # Miniforge installer
     miniforge_arch=$(uname -m) && \
-    miniforge_installer="Mambaforge-pypy3-Linux-${miniforge_arch}.sh" && \
+    miniforge_installer="${miniforge_python}-Linux-${miniforge_arch}.sh" && \
     wget --quiet "${CONDA_MIRROR}/${miniforge_installer}" && \
     /bin/bash "${miniforge_installer}" -f -b -p "${CONDA_DIR}" && \
     rm "${miniforge_installer}" && \
