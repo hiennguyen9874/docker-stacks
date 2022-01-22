@@ -95,7 +95,7 @@ ARG miniforge_patch_number="0"
 ARG miniforge_version="${conda_version}-${miniforge_patch_number}"
 ARG miniforge_python="Mambaforge"
 # Mambaforge or Mambaforge-pypy3
-ARG CONDA_MIRROR=https://github.com/conda-forge/miniforge/releases/download/${miniforge_version}/
+ARG CONDA_MIRROR=https://github.com/conda-forge/miniforge/releases/download/${miniforge_version}
 
 # ---- Miniforge installer ----
 # Check https://github.com/conda-forge/miniforge/releases
