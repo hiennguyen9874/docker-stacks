@@ -1,2 +1,0 @@
-DOCKER_BUILDKIT=1 docker build -t $3/base-notebook:$4 --build-arg ROOT_CONTAINER=$1 --build-arg PYTHON_VERSION=$2 --build-arg conda_version=4.10.0 --build-arg miniforge_patch_number=0 --build-arg miniforge_python=Mambaforge .
-docker push $3/base-notebook:$4
