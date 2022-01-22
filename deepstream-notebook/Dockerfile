@@ -62,4 +62,37 @@ RUN fix-permissions "/home/${NB_USER}"
 # Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
 RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+      apt-get install -y --no-install-recommends \
+      libgirepository1.0-dev \
+      gcc \
+      libcairo2-dev \
+      pkg-config \
+      python3-dev \
+      gir1.2-gtk-3.0 
+
 USER ${NB_UID}
+
+# Install Python 3 packages
+RUN mamba install --quiet --yes \
+      'pycairo' \
+      'PyGObject' && \
+      mamba clean --all -f -y && \
+      fix-permissions "${CONDA_DIR}" && \
+      fix-permissions "/home/${NB_USER}"
+
+USER root
+
+ENV GST_LIBS="-lgstreamer-1.0 -lgobject-2.0 -lglib-2.0"
+ENV GST_CFLAGS="-pthread -I/usr/include/gstreamer-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+
+ENV PYTHON="/opt/conda/bin/python"
+ENV GSTREAMER_VERSION="$(gst-launch-1.0 --version | grep version | tr -s ' ' '\n' | tail -1)"
+ENV LIBPYTHON="libpython3.8.a"
+ENV LIBPYTHONPATH="/opt/conda/lib"
+ENV GST_PREFIX="/opt/conda"
+
+WORKDIR /tmp
+RUN git clone https://github.com/GStreamer/gst-python.git
+WORKDIR /tmp/gst-python
+RUN git checkout $GST_VERSION

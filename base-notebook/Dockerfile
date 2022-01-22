@@ -102,7 +102,7 @@ ARG CONDA_MIRROR=https://github.com/conda-forge/miniforge/releases/latest/downlo
 RUN set -x && \
     # Miniforge installer
     miniforge_arch=$(uname -m) && \
-    miniforge_installer="Mambaforge-Linux-${miniforge_arch}.sh" && \
+    miniforge_installer="Mambaforge-pypy3-Linux-${miniforge_arch}.sh" && \
     wget --quiet "${CONDA_MIRROR}/${miniforge_installer}" && \
     /bin/bash "${miniforge_installer}" -f -b -p "${CONDA_DIR}" && \
     rm "${miniforge_installer}" && \
