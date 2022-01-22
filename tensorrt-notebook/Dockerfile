@@ -46,6 +46,8 @@ RUN tar xzvf TensorRT-${TRT_VERSION}.Linux.${ARCH}-gnu.${CUDA}.${CUDNN}.tar.gz &
 
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/workspace/TensorRT-${TRT_VERSION}/lib:/workspace/TensorRT-${TRT_VERSION}/targets/${ARCH}-linux-gnu/lib"
 
+ENV PATH="${PATH}:/workspace/TensorRT-${TRT_VERSION}/bin:/workspace/TensorRT-${TRT_VERSION}/targets/${ARCH}-linux-gnu/bin"
+
 USER root
 
 # Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001

@@ -52,6 +52,8 @@ WORKDIR /opt/nvidia/deepstream/deepstream
 
 RUN ln -s /usr/lib/x86_64-linux-gnu/libnvcuvid.so.1 /usr/lib/x86_64-linux-gnu/libnvcuvid.so
 RUN ln -s /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1 /usr/lib/x86_64-linux-gnu/libnvidia-encode.so
+RUN /opt/nvidia/deepstream/deepstream-6.0/install.sh
+RUN ldconfig
 
 WORKDIR /workspace
 
