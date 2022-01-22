@@ -59,9 +59,6 @@ WORKDIR /workspace
 
 RUN fix-permissions "/home/${NB_USER}"
 
-# Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
-RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
       apt-get install -y --no-install-recommends \
       libgirepository1.0-dev \
@@ -75,24 +72,27 @@ USER ${NB_UID}
 
 # Install Python 3 packages
 RUN mamba install --quiet --yes \
+      'gst-python' \
       'pycairo' \
       'PyGObject' && \
       mamba clean --all -f -y && \
       fix-permissions "${CONDA_DIR}" && \
       fix-permissions "/home/${NB_USER}"
 
+ADD pyds-1.1.0-py3-none-linux_x86_64.whl .
+
+RUN pip3 install --no-cache-dir pyds-1.1.0-py3-none-linux_x86_64.whl
+
+RUN rm pyds-1.1.0-py3-none-linux_x86_64.whl
+
 USER root
 
-ENV GST_LIBS="-lgstreamer-1.0 -lgobject-2.0 -lglib-2.0"
-ENV GST_CFLAGS="-pthread -I/usr/include/gstreamer-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib
 
-ENV PYTHON="/opt/conda/bin/python"
-ENV GSTREAMER_VERSION="$(gst-launch-1.0 --version | grep version | tr -s ' ' '\n' | tail -1)"
-ENV LIBPYTHON="libpython3.8.a"
-ENV LIBPYTHONPATH="/opt/conda/lib"
-ENV GST_PREFIX="/opt/conda"
+# Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
+RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
 
-WORKDIR /tmp
-RUN git clone https://github.com/GStreamer/gst-python.git
-WORKDIR /tmp/gst-python
-RUN git checkout $GST_VERSION
+WORKDIR /opt/nvidia/deepstream/deepstream/sources/
+RUN git clone https://github.com/NVIDIA-AI-IOT/deepstream_python_apps
+
+USER ${NB_UID}
