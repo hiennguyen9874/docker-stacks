@@ -55,6 +55,9 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.1 /usr/lib/x86_64-linux-
 RUN /opt/nvidia/deepstream/deepstream-6.0/install.sh
 RUN ldconfig
 
+# https://forums.developer.nvidia.com/t/customised-plugins-in-deepstream-4-0/110282/2
+ENV GST_PLUGIN_PATH=${GST_PLUGIN_PATH}:/usr/lib/x86_64-linux-gnu/gstreamer-1.0
+
 WORKDIR /workspace
 
 RUN fix-permissions "/home/${NB_USER}"
