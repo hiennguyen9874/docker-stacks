@@ -20,6 +20,7 @@ RUN v="${TRT_VERSION%.*}-1+cuda${CUDA:5:8}" && \
       libgstreamer1.0-dev \
       libgstreamer-plugins-base1.0-dev \
       libssl1.1 \
+      gstreamer1.0-rtsp \
       libgstrtspserver-1.0-0 \
       libgstrtspserver-1.0-0-dbg \
       libgstrtspserver-1.0-dev \
@@ -69,7 +70,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
       libcairo2-dev \
       pkg-config \
       python3-dev \
-      gir1.2-gtk-3.0 
+      gir1.2-gtk-3.0 \
+      gobject-introspection \
+      gir1.2-gst-rtsp-server-1.0 \
+      libopencv-dev
 
 USER ${NB_UID}
 
