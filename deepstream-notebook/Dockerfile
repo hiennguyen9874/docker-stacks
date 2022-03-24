@@ -82,33 +82,33 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 
 USER ${NB_UID}
 
-WORKDIR /opt/nvidia/deepstream/deepstream/sources/
-RUN git clone https://github.com/NVIDIA-AI-IOT/deepstream_python_apps
+# WORKDIR /opt/nvidia/deepstream/deepstream/sources/
+# RUN git clone --depth 1 --branch v1.1.1 https://github.com/NVIDIA-AI-IOT/deepstream_python_apps
 
-RUN cd deepstream_python_apps/bindings/
+# RUN cd deepstream_python_apps/bindings/
 
-RUN git submodule update --init
+# RUN git submodule update --init
 
-# Install Python 3 packages
-# RUN mamba install --quiet --yes \
-#       'gst-python' \
-#       'pycairo' \
-#       'PyGObject' && \
-#       mamba clean --all -f -y && \
-#       fix-permissions "${CONDA_DIR}" && \
-#       fix-permissions "/home/${NB_USER}"
+# # Install Python 3 packages
+# # RUN mamba install --quiet --yes \
+# #       'gst-python' \
+# #       'pycairo' \
+# #       'PyGObject' && \
+# #       mamba clean --all -f -y && \
+# #       fix-permissions "${CONDA_DIR}" && \
+# #       fix-permissions "/home/${NB_USER}"
 
-RUN cd 3rdparty/gst-python/
-RUN ./autogen.sh
-RUN make
-RUN make install
+# RUN cd 3rdparty/gst-python/
+# RUN ./autogen.sh
+# RUN make
+# RUN make install
 
-RUN mkdir build && cd build
-RUN cmake ..  -DPYTHON_MAJOR_VERSION=3 -DPYTHON_MINOR_VERSION=8 -DPIP_PLATFORM=linux_x86_64 -DDS_PATH=/opt/nvidia/deepstream/deepstream
-RUN make
+# RUN mkdir build && cd build
+# RUN cmake ..  -DPYTHON_MAJOR_VERSION=3 -DPYTHON_MINOR_VERSION=8 -DPIP_PLATFORM=linux_x86_64 -DDS_PATH=/opt/nvidia/deepstream/deepstream
+# RUN make
 
-# ADD pyds-1.1.0-py3-none-linux_x86_64.whl .
-RUN pip3 install --no-cache-dir ./*.whl
+# # ADD pyds-1.1.0-py3-none-linux_x86_64.whl .
+# RUN pip3 install --no-cache-dir ./*.whl
 
 USER root
 
