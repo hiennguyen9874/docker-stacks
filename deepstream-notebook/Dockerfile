@@ -37,17 +37,22 @@ RUN v="${TRT_VERSION%.*}-1+cuda${CUDA:5:8}" && \
       libnvonnxparsers8=${v} \
       libnvonnxparsers-dev=${v} \
       libnvinfer-plugin8=${v} \
-      libnvinfer-plugin-dev=${v} 
+      libnvinfer-plugin-dev=${v} \
+      libglib2.0 \
+      libglib2.0-dev \
+      librdkafka1=0.11.3-1build1
 
 WORKDIR /workspace
 
-COPY deepstream-6.0_6.0.0-1_amd64.deb .
+ARG DEEPSTREAM_DEB_FILE=deepstream-6.0_6.0.0-1_amd64.deb
+
+COPY $DEEPSTREAM_DEB_FILE .
 
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
-      /workspace/deepstream-6.0_6.0.0-1_amd64.deb
+      /workspace/$DEEPSTREAM_DEB_FILE
 
-RUN rm /workspace/deepstream-6.0_6.0.0-1_amd64.deb
+RUN rm /workspace/$DEEPSTREAM_DEB_FILE
 
 WORKDIR /opt/nvidia/deepstream/deepstream
 
@@ -77,20 +82,33 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 
 USER ${NB_UID}
 
+WORKDIR /opt/nvidia/deepstream/deepstream/sources/
+RUN git clone https://github.com/NVIDIA-AI-IOT/deepstream_python_apps
+
+RUN cd deepstream_python_apps/bindings/
+
+RUN git submodule update --init
+
 # Install Python 3 packages
-RUN mamba install --quiet --yes \
-      'gst-python' \
-      'pycairo' \
-      'PyGObject' && \
-      mamba clean --all -f -y && \
-      fix-permissions "${CONDA_DIR}" && \
-      fix-permissions "/home/${NB_USER}"
+# RUN mamba install --quiet --yes \
+#       'gst-python' \
+#       'pycairo' \
+#       'PyGObject' && \
+#       mamba clean --all -f -y && \
+#       fix-permissions "${CONDA_DIR}" && \
+#       fix-permissions "/home/${NB_USER}"
 
-ADD pyds-1.1.0-py3-none-linux_x86_64.whl .
+RUN cd 3rdparty/gst-python/
+RUN ./autogen.sh
+RUN make
+RUN make install
 
-RUN pip3 install --no-cache-dir pyds-1.1.0-py3-none-linux_x86_64.whl
+RUN mkdir build && cd build
+RUN cmake ..  -DPYTHON_MAJOR_VERSION=3 -DPYTHON_MINOR_VERSION=8 -DPIP_PLATFORM=linux_x86_64 -DDS_PATH=/opt/nvidia/deepstream/deepstream
+RUN make
 
-RUN rm pyds-1.1.0-py3-none-linux_x86_64.whl
+# ADD pyds-1.1.0-py3-none-linux_x86_64.whl .
+RUN pip3 install --no-cache-dir ./*.whl
 
 USER root
 
@@ -98,8 +116,5 @@ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib
 
 # Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
 RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
-
-WORKDIR /opt/nvidia/deepstream/deepstream/sources/
-RUN git clone https://github.com/NVIDIA-AI-IOT/deepstream_python_apps
 
 USER ${NB_UID}
