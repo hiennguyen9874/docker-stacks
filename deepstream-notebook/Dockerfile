@@ -63,6 +63,11 @@ RUN ldconfig
 
 # https://forums.developer.nvidia.com/t/customised-plugins-in-deepstream-4-0/110282/2
 ENV GST_PLUGIN_PATH=${GST_PLUGIN_PATH}:/usr/lib/x86_64-linux-gnu/gstreamer-1.0
+ENV GST_PLUGIN_PATH=${GST_PLUGIN_PATH}:/usr/lib/x86_64-linux-gnu/gstreamer-1.0/deepstream
+ENV GST_PLUGIN_PATH=${GST_PLUGIN_PATH}:/opt/nvidia/deepstream/deepstream-6.0/lib/gst-plugins
+
+RUN echo '/usr/local/lib/gstreamer-1.0' >> /etc/ld.so.conf
+RUN ldconfig
 
 WORKDIR /workspace
 
@@ -113,8 +118,11 @@ USER ${NB_UID}
 USER root
 
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/conda/lib
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib/gstreamer-1.0
+ENV LD_RUN_PATH=${LD_RUN_PATH}:/usr/local/lib/gstreamer-1.0
 
 # Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
 RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
+RUN echo LD_RUN_PATH="${LD_RUN_PATH}" >> /etc/environment
 
 USER ${NB_UID}
