@@ -11,7 +11,7 @@
 ## Install deepstream python
 
 - `sudo apt install -y git cmake g++ build-essential libglib2.0-dev libglib2.0-dev-bin libtool m4 autoconf automake`
-- `mamba install --quiet --yes gst-python pycairo PyGObject`
+- `mamba install --quiet --yes -c conda-forge gst-python pycairo PyGObject pybind11`
 - `mamba clean --all -f -y`
 
 - `mkdir build`
