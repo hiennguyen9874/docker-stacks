@@ -1,2 +1,0 @@
-DOCKER_BUILDKIT=1 docker build -t $1/tensorrt-notebook:$3 --build-arg BASE_CONTAINER=$1/datascience-notebook:$2 --build-arg CUDA_VERSION=$4 --build-arg TRT_VERSION=$5 --build-arg CUDA=$6 .
-docker push $1/tensorrt-notebook:$3

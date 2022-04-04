@@ -1,3 +1,30 @@
+## Disable conda
+
+- Add into .bashrc: `export PATH=/usr/bin:${PATH}`
+- comment out line in .bashrc: `eval "$(command conda shell.bash hook 2> /dev/null)"`
+
+## Install python
+
+### Install python3.8
+
+- `sudo apt install python-dev python3 python3-pip python3.6-dev python3.8-dev`
+
+### Set python3.8 as default
+
+- `cd /usr/bin`
+- `sudo ln -sv /usr/bin/python3.8 python3`
+- `python3 --version`
+
+## Install Deepstream python bindings
+
+Follow guide from [github.com/NVIDIA-AI-IOT/deepstream_python_apps](https://github.com/NVIDIA-AI-IOT/deepstream_python_apps/tree/master/bindings)
+
+- `sudo apt install libgirepository1.0-dev`
+- `cmake .. -DPYTHON_MAJOR_VERSION=3 -DPYTHON_MINOR_VERSION=6 -DPIP_PLATFORM=linux_x86_64 -DDS_PATH=/opt/nvidia/deepstream/deepstream`
+- `make`
+- `python3 -m pip install *.whl`
+
+<!--
 # Deepstream 6.0.0
 
 - Download file `deepstream-6.0_6.0.0-1_amd64.deb` from [developer.nvidia.com/deepstream-sdk](https://developer.nvidia.com/deepstream-sdk)
@@ -11,8 +38,14 @@
 ## Install deepstream python
 
 - `sudo apt install -y git cmake g++ build-essential libglib2.0-dev libglib2.0-dev-bin libtool m4 autoconf automake`
+- `sudo apt-get install libgtk-3-dev`
+- `sudo apt-get install libglib2.0-dev libjson-glib-dev uuid-dev`
 - `mamba install --quiet --yes -c conda-forge gst-python pycairo PyGObject pybind11`
 - `mamba clean --all -f -y`
+
+- `git submodule update --init`
+- `sudo apt-get install -y apt-transport-https ca-certificates -y`
+- `sudo update-ca-certificates`
 
 - `mkdir build`
 - `cd build`
@@ -27,6 +60,18 @@
   ```
   /opt/conda/include
   /opt/conda/include/python${PYTHON_VERSION}
+  ```
+
+  Change
+
+  ```
+  target_link_libraries(pyds pthread dl ${PYTHON_LIB} gstreamer-1.0 glib-2.0)
+  ```
+
+  to
+
+  ```
+  target_link_libraries(pyds pthread dl ${PYTHON_LIB} gstreamer-1.0 /usr/lib/x86_64-linux-gnu/libglib-2.0.so)
   ```
 
   Change
@@ -49,4 +94,4 @@
 
 - `cmake .. -DPYTHON_MAJOR_VERSION=3 -DPYTHON_MINOR_VERSION=8 -DPIP_PLATFORM=linux_x86_64 -DDS_PATH=/opt/nvidia/deepstream/deepstream`
 - `make`
-- `python3 -m pip3 install *.whl`
+- `python3 -m pip install *.whl` -->
