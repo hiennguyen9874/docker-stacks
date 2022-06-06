@@ -3,7 +3,7 @@
 - Add into .bashrc: `export PATH=/usr/bin:${PATH}`
 - comment out line in .bashrc: `eval "$(command conda shell.bash hook 2> /dev/null)"`
 
-## Install python
+<!-- ## Install python
 
 ### Install python3.8
 
@@ -12,8 +12,9 @@
 ### Set python3.8 as default
 
 - `cd /usr/bin`
+- `sudo unlink python3`
 - `sudo ln -sv /usr/bin/python3.8 python3`
-- `python3 --version`
+- `python3 --version` -->
 
 ## Install Deepstream python bindings
 
