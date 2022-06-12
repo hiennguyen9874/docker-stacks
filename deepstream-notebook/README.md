@@ -1,3 +1,7 @@
+## Build Deepstream container
+
+- `bash ./build_push.sh hiennguyen9874 deepstream_6.0. nvcr.io/nvidia/deepstream:6.0.1-devel`
+
 ## Disable conda
 
 - Add into .bashrc: `export PATH=/usr/bin:${PATH}`
