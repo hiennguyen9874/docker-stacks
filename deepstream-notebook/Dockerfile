@@ -4,6 +4,10 @@ FROM $BASE_CONTAINER
 
 RUN apt-key del 7fa2af80
 
+ARG DISTRO
+
+ARG ARCH=x86_64
+
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/$DISTRO/$ARCH/cuda-keyring_1.0-1_all.deb
 
 RUN dpkg -i cuda-keyring_1.0-1_all.deb
