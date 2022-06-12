@@ -11,3 +11,5 @@ RUN dpkg -i cuda-keyring_1.0-1_all.deb
 RUN sed -i '/developer\.download\.nvidia\.com\/compute\/cuda\/repos/d' /etc/apt/sources.list.d/*
 
 RUN sed -i '/developer\.download\.nvidia\.com\/compute\/machine-learning\/repos/d' /etc/apt/sources.list.d/*
+
+RUN apt-get update
