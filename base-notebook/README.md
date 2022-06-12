@@ -6,6 +6,6 @@
 
 - Cuda11.4 + Ubuntu18.04: `bash ./build_push.sh nvidia/cuda:11.4.3-cudnn8-devel-ubuntu18.04 3.8 hiennguyen9874 ubuntu18.04-py3.8-cuda11.4-v0.2`
 
-- Deepstream 6.0.1: `bash ./build_push.sh nvcr.io/nvidia/deepstream:6.0.1-devel 3.8 hiennguyen9874 deepstream_6.0.1`
+- Deepstream 6.0.1: `bash ./build_push.sh hiennguyen9874/deepstream-notebook:deepstream_6.0.1 3.8 hiennguyen9874 deepstream_6.0.1`
 
 - TensorRT 21.10: `bash ./build_push.sh nvcr.io/nvidia/tensorrt:21.10-py3 3.8 hiennguyen9874 tensorrt21.10`
