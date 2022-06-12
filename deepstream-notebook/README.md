@@ -1,6 +1,6 @@
 ## Build Deepstream container
 
-- `bash ./build_push.sh hiennguyen9874 deepstream_6.0.1 nvcr.io/nvidia/deepstream:6.0.1-devel ubuntu1804 x86_64`
+- `bash ./build_push.sh hiennguyen9874 deepstream_6.0.1-devel nvcr.io/nvidia/deepstream:6.0.1-devel ubuntu1804 x86_64`
 
 ## Disable conda
 
