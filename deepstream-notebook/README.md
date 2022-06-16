@@ -4,7 +4,7 @@
 
 ## Disable conda
 
-- Add into .bashrc: `export PATH=/usr/bin:${PATH}`
+- Add into .bashrc: `export PATH=/opt/tensorrt/bin:/usr/local/mpi/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ucx/bin:${PATH}`
 - comment out line in .bashrc: `eval "$(command conda shell.bash hook 2> /dev/null)"`
 
 <!-- ## Install python
