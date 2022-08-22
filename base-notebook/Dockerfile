@@ -167,6 +167,9 @@ RUN sed -re "s/c.NotebookApp/c.ServerApp/g" \
     /etc/jupyter/jupyter_notebook_config.py > /etc/jupyter/jupyter_server_config.py && \
     fix-permissions /etc/jupyter/
 
+# Jupyterlab not load LD_LIBRARY_PATH, hacked from https://github.com/jupyterhub/jupyterhub/issues/2630#issuecomment-839826001
+RUN echo LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" >> /etc/environment
+
 # Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}
 
