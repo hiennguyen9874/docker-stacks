@@ -15,3 +15,5 @@
 - Deepstream 6.1.1 + Python3.8: `bash ./build_push.sh hiennguyen9874/deepstream:deepstream_6.1.1-devel 3.8 hiennguyen9874 deepstream_6.1.1`
 
 - TensorRT 21.10 + Python3.8: `bash ./build_push.sh nvcr.io/nvidia/tensorrt:21.10-py3 3.8 hiennguyen9874 tensorrt21.10`
+
+- TensorRT 21.06 + Python3.9: `bash ./build_push.sh nvcr.io/nvidia/tensorrt:21.06-py3 3.9 hiennguyen9874 tensorrt21.06-py3.9`
