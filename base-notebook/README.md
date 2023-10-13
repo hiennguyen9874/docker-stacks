@@ -20,3 +20,7 @@
 
 - Build Deepstream 6.3: `DOCKER_BUILDKIT=1 docker build -t hiennguyen9874/base-notebook:deepstream_6.3-gc-triton-devel --build-arg ROOT_CONTAINER=nvcr.io/nvidia/deepstream:6.3-gc-triton-devel --build-arg PYTHON_VERSION=3.8 --build-arg NB_UID=1001 --build-arg NB_GID=101 .`
 - Push Deepstream 6.3: `docker push hiennguyen9874/base-notebook:deepstream_6.3-gc-triton-devel`
+
+- TensorRT 23.03 + Python3.8: `bash ./build_push.sh nvcr.io/nvidia/tensorrt:23.03-py3 3.8 hiennguyen9874 tensorrt23.03`
+
+- TensorRT 23.03 + Python3.9: `bash ./build_push.sh nvcr.io/nvidia/tensorrt:23.03-py3 3.9 hiennguyen9874 tensorrt23.03-py3.9`
