@@ -3,3 +3,5 @@
 - Cuda11.4 + Ubuntu18.04: `bash ./build_push.sh hiennguyen9874 ubuntu18.04-py3.8-cuda11.4-v0.2`
 - Cuda11.4 + Ubuntu20.04: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cuda11.4-v0.2`
 - Deepstream 6.3: `bash ./build_push.sh hiennguyen9874 deepstream_6.3-gc-triton-devel`
+- TensorRT 23.03 + Python3.8: `bash ./build_push.sh hiennguyen9874 tensorrt23.03`
+- TensorRT 23.03 + Python3.9: `bash ./build_push.sh hiennguyen9874 tensorrt23.03-py3.9`
