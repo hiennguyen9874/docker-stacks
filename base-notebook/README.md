@@ -24,3 +24,5 @@
 - TensorRT 23.03 + Python3.8: `bash ./build_push.sh nvcr.io/nvidia/tensorrt:23.03-py3 3.8 hiennguyen9874 tensorrt23.03`
 
 - TensorRT 23.03 + Python3.9: `bash ./build_push.sh nvcr.io/nvidia/tensorrt:23.03-py3 3.9 hiennguyen9874 tensorrt23.03-py3.9`
+
+- Pytorch 23.02 + Python3.9: `bash ./build_push.sh nvcr.io/nvidia/pytorch:23.02-py3 3.9 hiennguyen9874 pytorch-23.02-py3`
