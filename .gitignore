@@ -68,3 +68,7 @@ dockerspawner.tar.gz
 .ipynb_checkpoints/
 .vscode/
 .pytest_cache/
+deepstream-notebook/deepstream-6.0_6.0.0-1_amd64.deb
+deepstream-notebook/deepstream-6.0_6.0.1-1_amd64.deb
+tensorrt-notebook/TensorRT-8.0.1.6.Linux.x86_64-gnu.cuda-11.3.cudnn8.2.tar.gz
+tensorrt-notebook/TensorRT-8.0.3.4.Linux.x86_64-gnu.cuda-11.3.cudnn8.2.tar.gz

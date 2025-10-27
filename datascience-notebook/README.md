@@ -1,4 +1,0 @@
-- CPU: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cpu-v0.2`
-- Cuda11.3 + Ubuntu20.04: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cuda11.3-v0.2`
-- Cuda11.4 + Ubuntu18.04: `bash ./build_push.sh hiennguyen9874 ubuntu18.04-py3.8-cuda11.4-v0.2`
-- Cuda11.4 + Ubuntu20.04: `bash ./build_push.sh hiennguyen9874 ubuntu20.04-py3.8-cuda11.4-v0.2`
