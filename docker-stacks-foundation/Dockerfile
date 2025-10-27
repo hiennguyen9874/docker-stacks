@@ -155,6 +155,10 @@ RUN mkdir /usr/local/bin/start-notebook.d && \
 
 COPY 10activate-conda-env.sh /usr/local/bin/before-notebook.d/
 
+RUN fix-permissions /usr/local/bin/run-hooks.sh \
+    /usr/local/bin/start.sh
+RUN fix-permissions /usr/local/bin/before-notebook.d/10activate-conda-env.sh
+
 # macOS Rosetta virtualization creates junk directory which gets owned by root further up.
 # It'll get re-created, but as USER runner after the next directive so hopefully should not cause permission issues.
 #

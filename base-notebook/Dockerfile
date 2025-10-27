@@ -72,7 +72,12 @@ COPY jupyter_server_config.py docker_healthcheck.py /etc/jupyter/
 
 # Fix permissions on /etc/jupyter as root
 USER root
-RUN fix-permissions /etc/jupyter/
+RUN fix-permissions /etc/jupyter/jupyter_server_config.py \
+    /etc/jupyter/docker_healthcheck.py && \
+    fix-permissions /usr/local/bin/start-notebook.py \
+    /usr/local/bin/start-notebook.sh \
+    /usr/local/bin/start-singleuser.py \
+    /usr/local/bin/start-singleuser.sh
 
 # HEALTHCHECK documentation: https://docs.docker.com/engine/reference/builder/#healthcheck
 # This healtcheck works well for `lab`, `notebook`, `nbclassic`, `server`, and `retro` jupyter commands
